@@ -1,2 +1,2 @@
 <?php
-echo 'is_model';
+echo '测试';
