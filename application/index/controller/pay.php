@@ -2,7 +2,7 @@
     {
         $user_id = Session::get('user_id');
         $user_info = \app\index\model\User::get_user_info($user_id);
-        if ($user_info['fund_one'] >= 499) return ['code'=>0,'msg'=>'只能购买一次'];
+        if ($user_info['fund_one'] >= 998) return ['code'=>0,'msg'=>'只能购买一次'];
         $pay_fund_one = \app\index\model\Pay::pay_fund($user_info,$type = 1);
         switch ($pay_fund_one)
         {
@@ -22,7 +22,7 @@
     {
         $user_id = Session::get('user_id');
         $user_info = \app\index\model\User::get_user_info($user_id);
-        if ($user_info['fund_two'] >= 699) return ['code'=>0,'msg'=>'只能购买一次'];
+        if ($user_info['fund_two'] >= 1398) return ['code'=>0,'msg'=>'只能购买一次'];
         $pay_fund_one = \app\index\model\Pay::pay_fund($user_info,$type = 2);
         switch ($pay_fund_one)
         {
