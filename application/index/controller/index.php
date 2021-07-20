@@ -1,2 +1,2 @@
 <?php
-echo 'is_php';
+echo '测试';
