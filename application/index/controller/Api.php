@@ -15,30 +15,6 @@ use think\facade\Config;
  */
 class Api extends Controller
 {
-    public function money_s_time()
-    {
-        $now_time = date("Y-m-d");
-        $where = [
-            ['money_b', '>', 0],
-            ['status', '=', 1],
-            ['money_s_time', '<', $now_time],
-        ];
-        $user_info = Db::name('xy_users')->where($where)->select();
-        $day_money = Db::name('system_config')->where('name', 'miitbeian')->value('value');
-        if ($user_info) {
-            foreach ($user_info as $k => $v) {
-                $money_s = $v['money_b'] * 0.1 + $day_money;
-                Db::name('xy_users')->where('id', $v['id'])->setInc('money_s', $money_s);
-                Db::name('xy_users')->where('id', $v['id'])->setField('money_s_time', $now_time);
-            }
-            wlog('money_s', '已处理完成');
-            echo '已处理完成';
-        } else {
-            wlog('money_s', '没有要处理的数据');
-            echo '没有要处理的数据';
-        }
-    }
-
     public function notify_url()
     {
         $data = $_POST;
@@ -75,7 +51,7 @@ class Api extends Controller
         }
     }
 
-    //返利
+
     public function pid_money($user_info)
     {
         if ($user_info['pid'] > 0 && $user_info['pid_money'] == 0) {
