@@ -1,1 +1,1165 @@
+{include file="public/header"/}
+<body>
+<style>
+    .home-page .bui-bar {
+        background-color: #fff
+    }
 
+    .home-page .bui-bar .area-btn {
+        padding: 0 .2rem 0 .1rem;
+        color: #666;
+        font-size: .24rem
+    }
+
+    .home-page .bui-bar .area-btn .icon-dropdown {
+        margin-left: .1rem
+    }
+
+    .home-page .bui-bar-left {
+        width: .7rem
+    }
+
+    .home-page .bui-bar-right {
+        width: .9rem
+    }
+
+    .home-page .bui-bar-right .bui-btn .icon-chat {
+        font-size: .4rem;
+        color: #666
+    }
+
+    .home-page .bui-searchbar {
+        padding-left: 0;
+        padding-right: 0
+    }
+
+    .home-page .bui-searchbar .bui-input {
+        background-color: #F3F5F8
+    }
+
+    .home-page .bui-searchbar .icon-search {
+        color: #333
+    }
+
+    .home-page .bui-bar-left {
+        padding-top: .1rem
+    }
+
+    .home-page .bui-bar-left .weather-box {
+        line-height: 1.2
+    }
+
+    .home-page .weather-box {
+        text-align: center
+    }
+
+    .home-page .weather-box .icon {
+        display: inline;
+        line-height: 1.2;
+        color: #666;
+        font-size: .36rem
+    }
+
+    .home-page .weather-box .weather-text {
+        line-height: 1.2;
+        font-size: .2rem;
+        color: #666
+    }
+
+    .home-page .nav-list .bui-icon {
+        display: inline-block;
+        margin: 0 0 .2rem
+    }
+
+    .home-page .nav-list .icon1 {
+        background: linear-gradient(123deg, #0bdace 0%, #00caab 100%)
+    }
+
+    .home-page .nav-list .icon2 {
+        background: linear-gradient(142deg, #ff9343 0%, #f76b1c 100%)
+    }
+
+    .home-page .nav-list .icon3 {
+        background: linear-gradient(132deg, #7bd441 0%, #47b300 100%)
+    }
+
+    .home-page .nav-list .icon4 {
+        background: linear-gradient(138deg, #03dcff 0%, #1fa9ff 100%)
+    }
+
+    .home-page .nav-list .bui-fluid {
+        border: none
+    }
+
+    .home-page .nav-list .bui-fluid [class*=bui-btn].bui-box-vertical {
+        padding: .36rem 0;
+        border: none
+    }
+
+    .home-page .home-part {
+        margin-top: .2rem;
+        background-color: #fff
+    }
+
+    .home-page .part-title {
+        padding: .4rem .24rem;
+        font-size: .3rem;
+        color: #333;
+        text-align: left
+    }
+
+    .home-page .part-title .icon-listright {
+        color: #C9CDD5
+    }
+
+    .home-page .store-navbar {
+        padding-left: .16rem
+    }
+
+    .home-page .store-navbar .bui-nav {
+        border: none
+    }
+
+    .home-page .store-navbar .bui-btn {
+        padding: 0 .08rem .2rem .08rem;
+        width: 3.8rem
+    }
+
+    .home-page .store-navbar .wrap-pic {
+        height: 2rem;
+        border-radius: .1rem;
+        overflow: hidden
+    }
+
+    .home-page .store-navbar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover
+    }
+
+    .home-page .store-navbar h4 {
+        padding: .15rem 0;
+        font-size: .28rem;
+        color: #333333
+    }
+
+    .home-page .store-navbar .details {
+        font-size: .24rem;
+        color: #999
+    }
+
+    .home-page .show-part .bui-fluid {
+        border: none
+    }
+
+    .home-page .show-part .bui-fluid .bui-btn {
+        padding: .3rem .24rem;
+        text-align: left
+    }
+
+    .home-page .show-part .bui-fluid .number-map {
+        color: #eee;
+        font-size: .2rem
+    }
+
+    .home-page .show-part .bui-fluid .span1 {
+        margin-top: .05rem;
+        font-size: .6rem;
+        color: #333
+    }
+
+    .home-page .show-part .bui-fluid .span1 .sub {
+        font-size: .24rem;
+        color: #333
+    }
+
+    .home-page .show-part .bui-fluid .span1.green {
+        color: #08BF4B
+    }
+
+    .home-activity-list {
+        padding: 0 .12rem
+    }
+
+    .home-activity-list .wrap-pic {
+        height: 2.14rem;
+        overflow: hidden;
+        border-radius: .05rem
+    }
+
+    .home-activity-list .wrap-pic img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover
+    }
+
+    .home-activity-list li.bui-btn {
+        padding: 0 .12rem;
+        margin-bottom: .4rem;
+        border: none;
+        text-align: left
+    }
+
+    .home-activity-list li.bui-btn h4 {
+        padding: .25rem 0 .12rem;
+        color: #333;
+        font-size: .32rem
+    }
+
+    .home-activity-list .text-item {
+        margin-bottom: .1rem;
+        color: #666;
+        font-size: .24rem
+    }
+
+    .home-activity-list .text-item .icon {
+        width: .2rem;
+        height: .2rem;
+        font-size: .2rem;
+        line-height: .2rem;
+        color: #ccc
+    }
+
+    .home-activity-list .text-item .dot {
+        display: inline-block;
+        width: .1rem;
+        height: .1rem;
+        border-radius: 50%;
+        background-color: #66C23D
+    }
+
+    .home-activity-list .activity-btn {
+        display: inline-block;
+        margin: .3rem 0 .2rem;
+        padding: .12rem .5rem;
+        border: none;
+        color: #fff;
+        text-align: center;
+        border-radius: .6rem;
+        font-size: .32rem;
+        background: linear-gradient(144deg, #44bfff 0%, #3b86ff 100%);
+        box-shadow: 0 4px 15px #44bfff9e
+    }
+
+    .main-footer {
+        background-color: #fff
+    }
+
+    .main-footer .btn-home {
+        position: relative;
+        overflow: visible
+    }
+
+    .main-footer .btn-home .big-icon {
+        z-index: 10;
+        margin-top: -.2rem;
+        display: inline-block;
+        width: .94rem;
+        height: .94rem;
+        line-height: .94rem;
+        color: #fff;
+        border-radius: 50%;
+        background: linear-gradient(141.4deg, #02b9fa, #508dff)
+    }
+
+    .main-footer .layer1 {
+        top: -.3rem;
+        left: 50%;
+        width: 1.2rem;
+        height: 1.2rem;
+        position: absolute;
+        box-shadow: 0 0 1px 1px #eee;
+        border-radius: 50%;
+        transform: translateX(-50%);
+        background-color: #fff
+    }
+
+    .main-footer .layer2 {
+        position: absolute;
+        top: 0rem;
+        bottom: -.05rem;
+        width: 100%;
+        background-color: #fff
+    }
+
+    .no-data-tip {
+        position: relative;
+        padding: .3rem 0;
+        text-align: center;
+        font-size: .24rem;
+        color: #999999
+    }
+
+    .no-data-tip .data-text {
+        position: relative;
+        z-index: 9;
+        display: inline-block;
+        padding: 0 .1rem;
+        background-color: #f3f5f8
+    }
+
+    .no-data-tip:after {
+        position: absolute;
+        top: 50%;
+        left: 20%;
+        right: 20%;
+        content: '';
+        height: 1px;
+        background-color: #E8E8E8
+    }
+
+    .home-page-skin2 .bui-bar-text {
+        width: 1.5rem
+    }
+
+    .home-page-skin2 .bui-bar-text .bui-btn {
+        margin-right: 0
+    }
+
+    .home-page-skin2 .bui-bar-text .icon {
+        margin-right: 0;
+        width: .5rem
+    }
+
+    .home-page-skin2 .bui-slide {
+        padding: .2rem 0;
+        background-color: #fff
+    }
+
+    .home-page-skin2 .home-part {
+        margin-bottom: .2rem;
+        background-color: #fff
+    }
+
+    .home-page-skin2 .part-title {
+        position: relative;
+        padding: .2rem 0 .2rem .24rem;
+        font-size: .32rem;
+        color: #000;
+        line-height: 1
+    }
+
+    .home-page-skin2 .part-title:after {
+        content: '';
+        position: absolute;
+        width: 4px;
+        left: 0;
+        top: .18rem;
+        bottom: .18rem;
+        background-image: linear-gradient(144deg, #d7665f 0%, #d2433b 100%)
+    }
+
+    .home-page-skin2 .activity-part {
+        padding-top: .3rem
+    }
+
+    .home-page-skin2 .activity-part .activity-box {
+        padding: .24rem .24rem .2rem
+    }
+
+    .home-page-skin2 .activity-part .activity-title {
+        margin-bottom: .2rem;
+        font-size: .32rem;
+        color: #333
+    }
+
+    .home-page-skin2 .activity-part .pic-box {
+        margin-right: .24rem;
+        width: 2rem
+    }
+
+    .home-page-skin2 .activity-part .pic-box img {
+        width: 100%;
+        height: 1.3rem;
+        border-radius: .05rem;
+        object-fit: cover
+    }
+
+    .home-page-skin2 .tags .tag-item {
+        display: inline-block;
+        padding: 5px 10px;
+        margin-right: .1rem;
+        line-height: 1;
+        font-size: .24rem;
+        color: #999;
+        background-color: #F7F8F9;
+        border-radius: .2rem
+    }
+
+    .home-page-skin2 .tip-box {
+        position: relative;
+        height: 1.5rem
+    }
+
+    .home-page-skin2 .tip-box .tip {
+        position: absolute;
+        right: -1px;
+        bottom: 0rem;
+        display: inline-block;
+        width: .85rem;
+        padding: .15rem .1rem .1rem .2rem;
+        white-space: nowrap;
+        text-align: right;
+        color: #fff;
+        line-height: 1;
+        font-size: .2rem;
+        border-top-left-radius: .4rem;
+        background-image: linear-gradient(322deg, #129fff 0%, #54e4ff 100%)
+    }
+
+    .home-page-skin2 .activity-time {
+        margin-top: .1rem;
+        font-size: .24rem;
+        color: #999
+    }
+
+    .home-page-skin2 .activity-time .icon {
+        margin-right: .1rem;
+        color: #999
+    }
+
+    .home-page-skin2 .recommend-part .recommend-item {
+        padding: .24rem
+    }
+
+    .home-page-skin2 .recommend-part .recommend-tip {
+        padding: 0 .24rem;
+        margin-bottom: 0;
+        font-size: .24rem;
+        color: #999
+    }
+
+    .home-page-skin2 .recommend-part .recommend-title {
+        font-size: .32rem;
+        line-height: 1.4;
+        color: #333;
+        height: .95rem
+    }
+
+    .home-page-skin2 .recommend-part .pic-box {
+        width: 2rem
+    }
+
+    .home-page-skin2 .recommend-part .pic-box img {
+        width: 100%;
+        height: 1.3rem;
+        object-fit: cover;
+        border-radius: .05rem
+    }
+
+    .home-page-skin2 .rating-box {
+        margin-top: .24rem
+    }
+
+    .home-page-skin2 .rating-box .bui-rating-cell {
+        margin: 0
+    }
+
+    .home-page-skin2 .rating-box .bui-rating-cell.bui-rating-cell-full {
+        color: #77D4F7
+    }
+
+    .home-page-skin2 .rating-box .bui-rating-cell:before {
+        font-size: .3rem
+    }
+
+    .home-page-skin2 .rating-box .rating-text {
+        margin-left: .1rem;
+        color: #999;
+        font-size: .24rem
+    }
+
+    .home-page-skin2 .rating-box .total-number {
+        font-size: .24rem;
+        color: #999
+    }
+
+    .home-page-skin2 .rating-box .total-number .icon-user {
+        margin-right: .1rem;
+        font-size: .3rem
+    }
+
+    .home-page-skin2 .main-mod .mod-text {
+        font-size: .32rem;
+        color: #333;
+        text-align: left
+    }
+
+    .home-page-skin2 .main-mod .mod-left {
+        padding-left: .4rem;
+        padding-right: .1rem
+    }
+
+    .home-page-skin2 .main-mod .mod-left .bui-icon {
+        margin-right: .2rem;
+        width: 1.2rem;
+        height: 1.2rem;
+        line-height: 1.2rem
+    }
+
+    .home-page-skin2 .main-mod .mod-left .icon {
+        font-size: .5rem
+    }
+
+    .home-page-skin2 .main-mod .blue {
+        background-image: linear-gradient(144deg, #49d9ff 0%, #47b1ff 100%)
+    }
+
+    .home-page-skin2 .main-mod .green {
+        background-image: linear-gradient(144deg, #95c852 0%, #92cc44 99%)
+    }
+
+    .home-page-skin2 .main-mod .orange {
+        background-image: linear-gradient(144deg, #ffa573 0%, #ffa370 100%)
+    }
+
+    .home-page-skin2 .main-mod .icon {
+        font-size: .4rem
+    }
+
+    .home-page-skin2 .main-mod .mod-right {
+        border-left: 1px solid #E8E8E8
+    }
+
+    .home-page-skin2 .main-mod .mod-right .bui-icon {
+        margin-right: .25rem;
+        width: .8rem;
+        height: .8rem;
+        line-height: .8rem;
+        border-radius: 50%
+    }
+
+    .home-page-skin2 .main-mod .mod-right .mod-item {
+        padding: .35rem .1rem .35rem .6rem
+    }
+
+    .home-page-skin2 .main-mod .mod-right .mod-item:first-child {
+        border-bottom: 1px solid #E8E8E8
+    }
+
+    .home-page-skin3 .bui-bar-left {
+        padding-left: .1rem;
+        padding-top: .1rem
+    }
+
+    .home-page-skin3 .show-box {
+        color: #fff
+    }
+
+    .home-page-skin3 .show-box .wrap-wave {
+        position: relative;
+        height: 2.4rem;
+        width: 2.4rem;
+        overflow: hidden;
+        border-radius: 50%
+    }
+
+    .home-page-skin3 .show-box .number {
+        font-size: .36rem;
+        color: #fff
+    }
+
+    .home-page-skin3 .show-box .number.orange {
+        color: #FFEC56
+    }
+
+    .home-page-skin3 .show-box .text {
+        font-size: .24rem;
+        color: rgba(255, 255, 255, 0.5)
+    }
+
+    .home-page-skin3 .show-box .wave-chart {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%
+    }
+
+    .home-page-skin3 .date-box {
+        padding-right: .1rem;
+        color: #fff;
+        border-right: 1px solid rgba(255, 255, 255, 0.6)
+    }
+
+    .home-page-skin3 .date-box .date-day {
+        display: inline-block;
+        line-height: 1;
+        font-size: .6rem
+    }
+
+    .home-page-skin3 .date-box .date-text {
+        display: inline-block
+    }
+
+    .home-page-skin3 .date-box .date-month {
+        font-size: .24rem;
+        opacity: .8
+    }
+
+    .home-page-skin3 .date-box .date-weekday {
+        font-size: .2rem;
+        opacity: .8
+    }
+
+    .home-page-skin3 .bui-bar-right .bui-btn .icon-chat {
+        font-size: .4rem
+    }
+
+    .home-page-skin3 .show-box {
+        padding: .4rem;
+        background-color: #39a4ff
+    }
+
+    .home-page-skin3 .nav-list {
+        padding-bottom: .45rem;
+        background-color: #fff
+    }
+
+    .home-page-skin3 .nav-list .bui-icon {
+        display: inline-block;
+        margin: 0 0 .2rem;
+        border-radius: .24rem
+    }
+
+    .home-page-skin3 .nav-list .blue {
+        background: linear-gradient(123deg, #0bdace 0%, #00caab 100%);
+        box-shadow: 0 1px 12px rgba(0, 202, 171, 0.5)
+    }
+
+    .home-page-skin3 .nav-list .orange {
+        background: linear-gradient(142deg, #ff9343 0%, #f76b1c 100%);
+        box-shadow: 0 1px 12px rgba(247, 107, 28, 0.5)
+    }
+
+    .home-page-skin3 .nav-list .green {
+        background: linear-gradient(132deg, #7bd441 0%, #47b300 100%);
+        box-shadow: 0 1px 12px rgba(71, 179, 0, 0.5)
+    }
+
+    .home-page-skin3 .nav-list .red {
+        background: linear-gradient(138deg, #03dcff 0%, #1fa9ff 100%);
+        box-shadow: 0 1px 12px rgba(31, 169, 255, 0.5)
+    }
+
+    .home-page-skin3 .nav-list .purple {
+        background: linear-gradient(139deg, #f246d6 0%, #e900c2 100%);
+        box-shadow: 0 1px 12px rgba(233, 0, 194, 0.5)
+    }
+
+    .home-page-skin3 .nav-list .bui-fluid {
+        border: none
+    }
+
+    .home-page-skin3 .nav-list .bui-fluid [class*=bui-btn].bui-box-vertical {
+        padding: .45rem 0 0;
+        border: none
+    }
+
+    .home-page-skin3 .nav-list .tab-name {
+        font-size: .28rem;
+        color: #666
+    }
+
+    .home-page-skin3 .home-part {
+        margin-top: .2rem;
+        background-color: #fff
+    }
+
+    .home-page-skin3 .part-title {
+        padding: .2rem 0;
+        margin: 0 .24rem;
+        font-size: .32rem;
+        color: #000;
+        border-bottom: 1px solid #e8e8e8
+    }
+
+    .home-page-skin3 .class-list .wrap-pic {
+        margin-right: .2rem;
+        width: 1.2rem;
+        height: .8rem
+    }
+
+    .home-page-skin3 .class-list .wrap-pic img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover
+    }
+
+    .home-page-skin3 .class-list .details {
+        position: relative;
+        padding-left: .2rem;
+        margin: .08rem 0 .12rem;
+        color: #666;
+        font-size: .24rem
+    }
+
+    .home-page-skin3 .class-list .details:before {
+        content: '';
+        position: absolute;
+        left: 0rem;
+        top: 48%;
+        width: .04rem;
+        height: .04rem;
+        background-color: #666;
+        border-radius: 100%
+    }
+
+    .home-page-skin3 .class-list .mark {
+        display: inline-block;
+        padding: .03rem;
+        margin-left: .03rem;
+        font-size: .18rem;
+        color: #fff;
+        border-radius: .05rem;
+        line-height: 1
+    }
+
+    .home-page-skin3 .class-list .mark.orange {
+        background-color: #FF943B
+    }
+
+    .home-page-skin3 .class-list .mark.green {
+        background-color: #13CF9E
+    }
+
+    .home-page-skin4 .bui-bar {
+        position: relative;
+        z-index: 10;
+        background-color: transparent;
+        background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%)
+    }
+
+    .home-page-skin4 main {
+        margin-top: -.9rem
+    }
+
+    .home-page-skin4 .bui-slide-head {
+        text-align: right
+    }
+
+    .home-page-skin4 .home-part {
+        margin-top: .2rem
+    }
+
+    .home-page-skin4 .part-title {
+        padding: .24rem;
+        text-align: left;
+        background-color: #fff
+    }
+
+    .home-page-skin4 .part-title .span1 {
+        color: #000
+    }
+
+    .home-page-skin4 .part-title .icon-listright {
+        color: #999
+    }
+
+    .home-page-skin7 .nav-list {
+        padding-bottom: .45rem;
+        border-bottom: .2rem solid #F3F5F8;
+        background-color: #fff
+    }
+
+    .home-page-skin7 .nav-list .bui-icon {
+        display: inline-block;
+        margin: 0 0 .2rem;
+        border-radius: .24rem
+    }
+
+    .home-page-skin7 .nav-list .blue {
+        background: linear-gradient(123deg, #0bdace 0%, #00caab 100%);
+        box-shadow: 0 1px 12px rgba(0, 202, 171, 0.5)
+    }
+
+    .home-page-skin7 .nav-list .orange {
+        background: linear-gradient(142deg, #ff9343 0%, #f76b1c 100%);
+        box-shadow: 0 1px 12px rgba(247, 107, 28, 0.5)
+    }
+
+    .home-page-skin7 .nav-list .green {
+        background: linear-gradient(132deg, #7bd441 0%, #47b300 100%);
+        box-shadow: 0 1px 12px rgba(71, 179, 0, 0.5)
+    }
+
+    .home-page-skin7 .nav-list .red {
+        background: linear-gradient(138deg, #03dcff 0%, #1fa9ff 100%);
+        box-shadow: 0 1px 12px rgba(31, 169, 255, 0.5)
+    }
+
+    .home-page-skin7 .nav-list .purple {
+        background: linear-gradient(139deg, #f246d6 0%, #e900c2 100%);
+        box-shadow: 0 1px 12px rgba(233, 0, 194, 0.5)
+    }
+
+    .home-page-skin7 .nav-list .bui-fluid {
+        border: none
+    }
+
+    .home-page-skin7 .nav-list .bui-fluid [class*=bui-btn].bui-box-vertical {
+        padding: .45rem 0 0;
+        border: none
+    }
+
+    .home-page-skin7 .nav-list .tab-name {
+        font-size: .28rem;
+        color: #666
+    }
+
+    .home-page-skin7 .deal-list {
+        padding: 0 .24rem;
+        background-color: #fff
+    }
+
+    .home-page-skin7 .deal-list .item-deal {
+        padding: .24rem .0rem;
+        border-bottom: 1px solid #E8E8E8;
+        background-color: #fff
+    }
+
+    .home-page-skin7 .deal-list .item-left {
+        margin-right: .15rem;
+        width: .8rem;
+        height: .8rem;
+        line-height: 1;
+        border-radius: 50%;
+        background-color: rgba(13, 124, 248, 0.1)
+    }
+
+    .home-page-skin7 .deal-list .item-left .date {
+        display: block;
+        margin-top: .15rem;
+        margin-bottom: .05rem;
+        font-size: .2rem;
+        font-weight: normal;
+        color: #50ACEF
+    }
+
+    .home-page-skin7 .deal-list .item-left .month {
+        display: block;
+        font-size: .16rem;
+        color: rgba(80, 172, 239, 0.6)
+    }
+
+    .home-page-skin7 .deal-list .item-right .item-up {
+        margin-bottom: .1rem
+    }
+
+    .home-page-skin7 .deal-list .item-right h6 {
+        font-size: .28rem;
+        color: #000
+    }
+
+    .home-page-skin7 .deal-list .item-right .source-tip {
+        display: inline-block;
+        padding: .04rem .12rem;
+        color: #1DB325;
+        font-size: .2rem;
+        border-radius: .2rem;
+        background-color: rgba(23, 178, 32, 0.1)
+    }
+
+    .home-page-skin7 .deal-list .item-right .item-down {
+        color: #999;
+        font-size: .24rem
+    }
+
+    .home-page-skin7 .deal-list .item-right .info:first-child {
+        margin-right: .4rem
+    }
+
+    .site-tab .bui-tab-head .bui-btn {
+        color: #999
+    }
+
+    .site-tab .bui-tab-head .bui-btn:after {
+        left: 50%;
+        width: .25rem;
+        transform: translateX(-50%)
+    }
+
+    .site-tab .bui-tab-head .bui-btn.active {
+        color: #39A4FF
+    }
+</style>
+
+<style type="text/css">
+
+    .home-page-skin7 .nav-list {
+        padding-bottom: .45rem;
+        border-bottom: .2rem solid #F3F5F8;
+        background-color: #fff
+    }
+
+    .home-page-skin7 .nav-list .bui-icon {
+        display: inline-block;
+        margin: 0 0 .2rem;
+        border-radius: .24rem
+    }
+
+    .home-page-skin7 .nav-list .primary {
+        background: linear-gradient(123deg, #0bdace 0%, #00caab 100%);
+    }
+
+    .home-page-skin7 .nav-list .warning {
+        background: linear-gradient(142deg, #ff9343 0%, #f76b1c 100%);
+    }
+
+    .home-page-skin7 .nav-list .success {
+        background: linear-gradient(132deg, #7bd441 0%, #47b300 100%);
+    }
+
+    .home-page-skin7 .nav-list .danger {
+        background: linear-gradient(138deg, #03dcff 0%, #1fa9ff 100%);
+    }
+
+    .home-page-skin7 .nav-list .purple {
+        background: linear-gradient(139deg, #f246d6 0%, #e900c2 100%);
+    }
+
+    .home-page-skin7 .nav-list .bui-fluid {
+        border: none
+    }
+
+    .home-page-skin7 .nav-list .bui-fluid [class*=bui-btn].bui-box-vertical {
+        padding: .45rem 0 0;
+        border: none
+    }
+
+    .home-page-skin7 .nav-list .tab-name {
+        font-size: .28rem;
+        color: #666
+    }
+
+    .home-page-skin7 .deal-list {
+        padding: 0 .24rem;
+        background-color: #fff
+    }
+
+    .home-page-skin7 .deal-list .item-deal {
+        padding: .24rem .0rem;
+        border-bottom: 1px solid #E8E8E8;
+        background-color: #fff
+    }
+
+    .home-page-skin7 .deal-list .item-left {
+        margin-right: .15rem;
+        width: .8rem;
+        height: .8rem;
+        line-height: 1;
+        border-radius: 50%;
+        background-color: rgba(13, 124, 248, 0.1)
+    }
+
+    .home-page-skin7 .deal-list .item-left .date {
+        display: block;
+        margin-top: .15rem;
+        margin-bottom: .05rem;
+        font-size: .2rem;
+        font-weight: normal;
+        color: #50ACEF
+    }
+
+    .home-page-skin7 .deal-list .item-left .month {
+        display: block;
+        font-size: .16rem;
+        color: rgba(80, 172, 239, 0.6)
+    }
+
+    .home-page-skin7 .deal-list .item-right .item-up {
+        margin-bottom: .1rem
+    }
+
+    .home-page-skin7 .deal-list .item-right h6 {
+        font-size: .28rem;
+        color: #000
+    }
+
+    .home-page-skin7 .deal-list .item-right .source-tip {
+        display: inline-block;
+        padding: .04rem .12rem;
+        color: #1DB325;
+        font-size: .2rem;
+        border-radius: .2rem;
+        background-color: rgba(23, 178, 32, 0.1)
+    }
+
+    .home-page-skin7 .deal-list .item-right .item-down {
+        color: #999;
+        font-size: .24rem
+    }
+
+    .home-page-skin7 .deal-list .item-right .info:first-child {
+        margin-right: .4rem
+    }
+
+    .site-tab .bui-tab-head .bui-btn {
+        color: #999
+    }
+
+    .site-tab .bui-tab-head .bui-btn:after {
+        left: 50%;
+        width: .25rem;
+        transform: translateX(-50%)
+    }
+
+    .site-tab .bui-tab-head .bui-btn.active {
+        color: #39A4FF
+    }
+
+</style>
+
+<style>
+    body .demo-class .layui-layer-btn0{
+        border-color: #d2433b;
+        background-color: #d1261c;
+        color: #fff;
+    }
+    body .demo-class .layui-layer-btn1{
+        border-color: #d2433b;
+        background-color: #d1261c;
+        color: #fff;
+    }
+</style>
+
+<div class="bui-page home-page-skin2">
+    <header class="bui-bar">
+        <div class="bui-bar-left"> </div>
+        <div class="bui-bar-main">五行补贴金申领系统</div>
+        <div class="bui-bar-right bui-bar-text"></div>
+    </header>
+    <main>
+        <div id="slide" class="bui-slide bui-slide-skin01" style="margin-top: -.2rem"></div>
+        <div id="slideNote" class="bui-slide bui-slide-notice"></div>
+
+        <article class="bui-article" style="margin-top: -.5rem">
+            <section>
+                <p>疫情就是命令,防控就是责任,生命终于泰山.不忘初心,牢记使命.让党旗在防控疫情斗争第一线高高飘扬.</p>
+            </section>
+        </article>
+
+        <div class="home-part recommend-part">
+            <div class="part-title">
+                系统说明
+            </div>
+            <p class="recommend-tip">老大考虑到这个疫情对于家人们的影响已经非常大,甚至导致部分家人们生活已经造成困扰,
+                最近总公司经常收到下面家人的信件,都是在诉苦,老大知道你们的难处.所以特此推出云家人
+                的补贴进,能帮则帮,现在可以改善家人们的生活,让我们攻读这个疫情难关!</p>
+        </div>
+
+        <div class="home-part recommend-part">
+            <div class="part-title">
+                领取方式
+            </div>
+            <p class="recommend-tip">家人们注册即送补贴金<span style="color: #d2433b">{$reg_money}元</span>(随时提现)</p>
+            <p class="recommend-tip">家人们邀请下线家人注册获得补贴金<span style="color: #d2433b">{$pid_reg_money}元</span>(随时提现)</p>
+            <p class="recommend-tip">家人们新注册领取<span style="color: #d2433b">{$reg_money}元</span>补贴金,隔天每日领取<span style="color: #d2433b">{$l0_money}元</span>补贴金</p>
+        </div>
+
+        <div class="home-part recommend-part">
+            <div class="part-title">
+                成为志愿者
+            </div>
+            <p class="recommend-tip">家人们成为防控一级志愿者即领取 2888元现金与每日补贴金翻倍 (每日领取388元变成500元)</p>
+            <p class="recommend-tip">家人们成为防控二级志愿者即领取 3888元现金与每日补贴金翻倍 (每日领取388元变成800元)</p>
+            <p class="recommend-tip">家人们成为防控高级志愿者即领取 6888元现金与每日补贴金翻倍 (每日领取388元变成1288元)</p>
+        </div>
+        <br>
+        <br>
+
+    </main>
+    <footer>
+        <ul class="bui-nav">
+            <a href="{:Url('index/index')}" class="bui-btn bui-box-vertical active">
+            <li><i class="iconfont iconshouye3"></i><div class="span1">首页</div></li>
+            </a>
+
+            <a href="{:Url('join/index')}" class="bui-btn bui-box-vertical">
+            <li><i class="iconfont iconzhiyuanzhe"></i><div class="span1">加入</div></li>
+            </a>
+
+            <a href="{:Url('user/poster')}" class="bui-btn bui-box-vertical">
+            <li><i class="iconfont iconerweima1688"></i><div class="span1">邀请</div></li>
+            </a>
+
+            <a href="{:Url('user/index')}" class="bui-btn bui-box-vertical">
+            <li><i class="iconfont iconmy1"></i><div class="span1">我的</div></li>
+            </a>
+        </ul>
+    </footer>
+</div>
+
+</body>
+</html>
+
+<script>
+    var notice = "{$notice}";
+    if (notice){
+        layer.alert(notice, {
+            title:'公告',
+            skin: 'demo-class'
+        })
+    }
+
+</script>
+
+<script>
+    bui.ready(function(){
+    var pageview = {};
+    pageview.init = function() {
+        var uiSlide = bui.slide({
+            id: "#slide",
+            height: 300,
+            autopage: true,
+            loop: true,
+            data: [{
+                image: "/static/index/images/banner03.png",
+            }, {
+                image: "/static/index/images/banner03.png",
+            }]
+        });
+
+        // 通知, 自定义模板
+        var slideNote = bui.slide({
+            id: "#slideNote",
+            height: 100,
+            autoplay: true,
+            loop: true,
+            data: [{
+                title: "云家人的专属疫情补贴金",
+            }, {
+                title: "云家人的专属疫情补贴金",
+            }, {
+                title: "云家人的专属疫情补贴金",
+            }],
+            template: function(data) {
+                // 自定义模板时,需要自己渲染完整结构
+                var html = "";
+                html += `<div class="bui-slide-main"><ul>`
+                data.forEach(function(item, i) {
+                    html += `<li href="${item.url}">
+                        <div class="notice-item" style="line-height: .7rem;">
+                            <div class="span1">${item.title||""}</div>
+                        </div>
+                    </li>`
+                });
+                html += `</ul></div>`
+
+                return html;
+            },
+            direction: "y"
+        });
+
+        var uiTab = bui.tab({
+            id: "#tabDealList",
+            autoheight: true
+        });
+    };
+    // 初始化
+    pageview.init();
+
+    // 输出模块
+    return pageview;
+})
+</script>
