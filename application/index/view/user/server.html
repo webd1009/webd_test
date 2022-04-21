@@ -1,0 +1,69 @@
+{include file="public/header"/}
+<body>
+
+<style>
+    .msg {
+        text-align: center;
+        padding:.5rem .2rem 0 .2rem;
+    }
+    .msg i{
+        font-size: 1.4rem;
+    }
+    .msg .msg-title {
+        padding-top: .5rem;
+        margin-bottom: .2rem;
+        font-size: .4rem;
+    }
+    .msg .msg-content {
+        font-size: .2rem;
+        color: #999;
+        margin-bottom: .2rem;
+        line-height:1.5;
+    }
+</style>
+
+<div class="bui-page">
+    <header class="bui-bar">
+        <div class="bui-bar-left">
+            <a class="bui-btn" onclick="bui.back();"><i class="icon-back"></i></a>
+        </div>
+        <div class="bui-bar-main">在线客服</div>
+        <div class="bui-bar-right">
+        </div>
+    </header>
+    <main>
+        {volist name="list" id="vo"}
+        <div class="msg">
+            <div class="photo-item">
+                <img src="{$vo.qr_code}" style="width: 5rem;height: 5rem;-webkit-touch-callout:default;">
+            </div>
+            <div class="msg-title">在线QQ:{$vo.qq}</div>
+            <div class="msg-title">在线微核:{$vo.wechat}</div>
+        </div>
+        {/volist}
+    </main>
+    <footer>
+        <ul class="bui-nav">
+            <a href="{:Url('index/index')}" class="bui-btn bui-box-vertical">
+                <li><i class="iconfont iconshouye3"></i><div class="span1">首页</div></li>
+            </a>
+
+            <a href="{:Url('join/index')}" class="bui-btn bui-box-vertical">
+                <li><i class="iconfont iconzhiyuanzhe"></i><div class="span1">加入</div></li>
+            </a>
+
+            <a href="{:Url('user/poster')}" class="bui-btn bui-box-vertical">
+                <li><i class="iconfont iconerweima1688"></i><div class="span1">邀请</div></li>
+            </a>
+
+            <a href="{:Url('user/index')}" class="bui-btn bui-box-vertical active">
+                <li><i class="iconfont iconmy1"></i><div class="span1">我的</div></li>
+            </a>
+        </ul>
+    </footer>
+</div>
+
+<script>
+</script>
+</body>
+</html>

@@ -1,1 +1,423 @@
+{include file="public/header"/}
+<body>
+<style>
+    .wrap-user-header{
+        background-image:linear-gradient(to right ,#d68782,#d7665f,#d2433b,#d1261c);
+    }
 
+    .user-pic{
+        border-top:none;
+    }
+    .user-pic .user-btn{
+        padding:.3rem;
+        border-bottom:none;
+        background-color: transparent;
+    }
+    .user-pic .thumbnail{
+        width:1rem;
+        height:1rem;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    .user-pic .pic{
+        width: 100%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+    }
+    .user-pic .item-title{
+        padding-top:.1rem;
+        color:#fff;
+        margin-bottom: .15rem;
+    }
+    .user-pic .user-btn .item-text{
+        padding-top:.02rem;
+        margin-bottom:.05rem;
+        color:#fff;
+        font-size:.18rem;
+    }
+    .user-pic .user-btn .account-address{
+        text-align:right;
+        font-size:.16rem;
+        color:#fff;
+    }
+    .user-pic .user-btn .account-address a{
+        color:#fff;
+    }
+    .user-pic .user-btn .user-right{
+        font-size:.16rem;
+    }
+
+    .user-nav{
+        background-color:rgba(0,0,0,0.1);
+    }
+    .user-nav .bui-btn{
+        padding-top:.1rem;
+        padding-bottom:.1rem;
+        border:none;
+        color:#fff;
+        font-size:.2rem;
+        background-color:transparent;
+        border-right:1px solid #7c1852;
+    }
+    .user-nav .bui-btn span {
+        display: block;
+        margin-bottom: .1rem;
+        font-size:.4rem;
+    }
+    .user-nav .bui-btn:last-child{
+        border-right:none;
+    }
+
+    /*内容区*/
+    .panel-usercenter {
+        margin-top: 0;
+        margin-bottom: .2rem;
+    }
+    .panel-usercenter .panel-head-right {
+        font-size: .18rem;
+        color: #999;
+    }
+    .panel-usercenter .bui-panel-head > i{
+        font-size: .4rem;
+        margin-right: .1rem;
+    }
+    .panel-usercenter .icon-order{
+        color: #ffd46f;
+    }
+    .panel-usercenter .icon-money{
+        color: #f99c8a;
+    }
+    .nav-list .bui-btn{
+        border: 0;
+        padding-top: .2rem;
+        padding-bottom: .2rem;
+        color: #333;
+    }
+    .nav-list .bui-btn i{
+        margin-bottom: .1rem;
+    }
+    .nav-list .bui-btn span{
+        margin-bottom: .1rem;
+    }
+    .menu-list {
+        margin-bottom: .2rem;
+    }
+    .menu-list .tips {
+        font-size: .18rem;
+        color: #999;
+    }
+    .menu-list .bui-btn {
+        color: #333;
+    }
+    .menu-list .icon-service,
+    .menu-list .icon-member,
+    .menu-list .icon-guess {
+        font-size: .4rem;
+        margin-right: .15rem;
+    }
+    .menu-list .icon-service {
+        color: #c4b3ea;
+    }
+    .menu-list .icon-member {
+        color: #e8a4cb;
+    }
+    .menu-list .icon-guess {
+        color: #76e7c9;
+    }
+
+</style>
+
+<style>
+    .tips {
+        font-size: .36rem;
+    }
+    .tips .text{
+        display: block;
+    }
+    .my-class .layui-layer-btn0{
+        border-color: #d2433b;
+        background-color: #d1261c;
+        color: #fff;
+    }
+    .my-class .layui-layer-btn1{
+        border-color: #d2433b;
+        background-color: #d1261c;
+        color: #fff;
+    }
+    .my-class .layui-layer-content {
+        padding: 20px;
+        position: relative;
+        overflow: auto;
+    }
+    .my-class .layui-layer-title {
+        padding: 0 80px 0 20px;
+        height: 42px;
+        line-height: 42px;
+        border-bottom: 1px solid #eee;
+        font-size: 14px;
+        color: #333;
+        overflow: hidden;
+        background-color: #F8F8F8;
+        border-radius: 2px 2px 0 0;
+    }
+    .my-class .layui-layer-input {
+        display: block;
+        width: 230px;
+        height: 36px;
+        margin: 0 auto;
+        line-height: 30px;
+        padding-left: 10px;
+        border: 1px solid #e6e6e6;
+        color: #333;
+    }
+</style>
+
+<div class="bui-page">
+    <header>
+        <div class="wrap-user-header">
+            <ul class="bui-list user-pic">
+                <li class="bui-btn bui-box user-btn">
+                    {if $user_info.head != null }
+                    <a href="javascript:void(0);">
+                        <div class="thumbnail"><img src="/upload/{$user_info.head}" class="pic" id="head"></div>
+                    </a>
+                    {else /}
+                    <a href="javascript:void(0);">
+                        <div class="thumbnail"><img src="/static/index/images/head_up.png" class="pic" id="head"></div>
+                    </a>
+                    {/if}
+                    <div class="span1">
+                        <h3 class="item-title">{$user_info.username}</h3>
+                        {switch user_info.level}
+                        {case 0}<p class="item-text">普通用户</p>{/case}
+                        {case 1}<p class="item-text">一级志愿者</p>{/case}
+                        {case 2}<p class="item-text">二级志愿者</p>{/case}
+                        {case 3}<p class="item-text">高级志愿者</p>{/case}
+                        {/switch}
+                    </div>
+                </li>
+            </ul>
+            <ul class="bui-nav user-nav">
+                <li class="bui-btn">
+                    <span>{$user_info.money_1}</span>
+                    <div class="span1">每日补贴金</div>
+                </li>
+                <li class="bui-btn">
+                    <span>{$user_info.money_2}</span>
+                    <div class="span1">下线补贴金</div>
+                </li>
+                <li class="bui-btn">
+                    <span>{$user_info.money_3}</span>
+                    <div class="span1">志愿者补贴金</div>
+                </li>
+            </ul>
+        </div>
+            <ul class="bui-nav">
+                <li class="bui-btn">
+                    <button class="bui-btn primary-reverse mini ring cashed" data-type="1" style="width: 1.5rem" >提现</button>
+                </li>
+                <li class="bui-btn">
+                    <button class="bui-btn primary-reverse mini ring cashed" data-type="2" style="width: 1.5rem" >提现</button>
+                </li>
+                <li class="bui-btn">
+                    <button class="bui-btn primary-reverse mini ring cashed" data-type="3" style="width: 1.5rem" >提现</button>
+                </li>
+            </ul>
+
+    </header>
+    <main>
+        <ul class="bui-list menu-list">
+
+            <a href="{:Url('user/account')}">
+            <li class="bui-btn bui-box">
+                <i class="iconfont iconexe-account-management-primary" style="font-size: .4rem;color: #d7665f">&nbsp;&nbsp;</i>
+                <div class="span1">账号管理</div>
+                <i class="icon-listright"></i>
+            </li>
+            </a>
+
+            <a href="{:Url('user/team')}">
+            <li class="bui-btn bui-box">
+                <i class="iconfont icontuandui3" style="font-size: .4rem;color: #d7665f">&nbsp;&nbsp;</i>
+                <div class="span1">我的团队</div>
+                <i class="icon-listright"></i>
+            </li>
+            </a>
+
+            <a href="{:Url('user/poster')}">
+            <li class="bui-btn bui-box">
+                <i class="iconfont iconerweima1" style="font-size: .4rem;color: #d7665f">&nbsp;&nbsp;</i>
+                <div class="span1">邀请海报</div>
+                <i class="icon-listright"></i>
+            </li>
+            </a>
+
+            <a href="{:Url('user/server')}">
+            <li class="bui-btn bui-box">
+                <i class="iconfont iconbianzu4" style="font-size: .4rem;color: #d7665f">&nbsp;&nbsp;</i>
+                <div class="span1">在线客服</div>
+                <i class="icon-listright"></i>
+            </li>
+            </a>
+
+            <a href="{:Url('user/password')}">
+            <li class="bui-btn bui-box">
+                <i class="iconfont iconxgmm" style="font-size: .4rem;color: #d7665f">&nbsp;&nbsp;</i>
+                <div class="span1">修改密码</div>
+                <i class="icon-listright"></i>
+            </li>
+            </a>
+
+            <li class="bui-btn bui-box out">
+                <i class="iconfont iconpower" style="font-size: .4rem;color: #d7665f">&nbsp;&nbsp;</i>
+                <div class="span1">安全退出</div>
+                <i class="icon-listright"></i>
+            </li>
+        </ul>
+    </main>
+    <footer>
+        <ul class="bui-nav">
+            <a href="{:Url('index/index')}" class="bui-btn bui-box-vertical">
+                <li><i class="iconfont iconshouye3"></i><div class="span1">首页</div></li>
+            </a>
+
+            <a href="{:Url('join/index')}" class="bui-btn bui-box-vertical">
+                <li><i class="iconfont iconzhiyuanzhe"></i><div class="span1">加入</div></li>
+            </a>
+
+            <a href="{:Url('user/poster')}" class="bui-btn bui-box-vertical">
+                <li><i class="iconfont iconerweima1688"></i><div class="span1">邀请</div></li>
+            </a>
+
+            <a href="{:Url('user/index')}" class="bui-btn bui-box-vertical active">
+                <li><i class="iconfont iconmy1"></i><div class="span1">我的</div></li>
+            </a>
+        </ul>
+    </footer>
+</div>
+</body>
+</html>
+
+<script src="/static/public/layui/layui.js"></script>
+
+<script>bui.ready(function(){
+    var pageview = {};
+    return pageview;
+})
+</script>
+
+<script type="text/javascript">
+    $(document).on("click", ".out", function () {
+        layer.load(2);
+        $.ajax({
+            url: "{:Url('logout')}",
+            type: "post",
+            traditional: true,
+            success: function (e) {
+                layer.closeAll('loading');
+                if (e.code === 1) {
+                    layer.msg(e.msg, {
+                        end: function () {
+                            window.location.href = "{:Url('index/index')}";
+                        }
+                    });
+                } else {
+                    layer.msg(e.msg, function () {
+                        return false;
+                    });
+                }
+            },
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).on("click", ".cashed", function () {
+        var type = $(this).data('type');
+        // layer.prompt({title: '请输入提现金额',formType: 3}, function(money, index){
+        layer.prompt({title: '请输入提现金额',skin: 'my-class',formType: 3}, function(money, index){
+            layer.close(index);
+            layer.load(2);
+            $.ajax({
+                url: "{:Url('user/cashed')}",
+                type: "post",
+                data:{type:type,money:money},
+                traditional: true,
+                success: function (e) {
+                    layer.closeAll('loading');
+                    if (e.code === 1) {
+                        layer.msg(e.msg, {
+                            end: function () {
+                                location.reload();
+                            }
+                        });
+                    } else {
+                        layer.msg(e.msg, function () {
+                            return false;
+                        });
+                    }
+                },
+            });
+        });
+    });
+</script>
+
+<script>
+    layui.use('upload', function () {
+        var $ = layui.jquery
+            , upload = layui.upload;
+        upload.render({
+            elem: '#head'
+            , url: "{:Url('upload/upload')}"
+            , accept: 'images'
+            , size: 4096
+            , multiple: false
+            , auto: false
+            , choose: function (obj) {  //上传前选择回调方法
+                var flag = true;
+                obj.preview(function (index, file, result) {
+                    layer.load(2);
+                    var img = new Image();
+                    img.src = result;
+                    img.onload = function () { //初始化夹在完成后获取上传图片宽高，判断限制上传图片的大小。
+                        if (img.width > img.height) {  // 判断出最长边和最短边
+                            var chang = img.width;
+                            var duan = img.height;
+                        } else {
+                            var chang = img.height;
+                            var duan = img.width;
+                        }
+                        if (chang <= 800 && duan <= 800) {
+                            layer.closeAll('loading');
+                            obj.upload(index, file); //满足条件调用上传方法
+                        } else {
+                            layer.closeAll('loading');
+                            flag = false;
+                            layer.msg('头像宽高需相等,且均不高于500px', function () {
+                            });
+                            return false;
+                        }
+                    };
+                    return flag;
+                });
+            }
+            , done: function (e) {
+                if (e.code === 1) {
+                    layer.closeAll('loading');
+                    $('#head').attr('src', '/upload/' + e.data);                  //图片链接（base64）
+                } else {
+                    layer.closeAll('loading');
+                    layer.msg('系统错误,请联系客服', function () {
+                    });
+                    return false;
+                }
+            }
+            , error: function () {
+                layer.closeAll('loading');
+                layer.msg('系统错误,请联系客服', function () {
+                });
+            }
+        });
+    });
+</script>

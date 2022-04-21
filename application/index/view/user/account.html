@@ -1,0 +1,304 @@
+{include file="public/header"/}
+<body>
+<style type="text/css">
+    .personal-info {
+        margin-top: 0;
+        margin-bottom: .2rem;
+    }
+
+    .personal-info .bui-btn {
+        padding-top: .3rem;
+        padding-bottom: .3rem;
+    }
+
+    .personal-info .icon {
+        margin-right: 0;
+    }
+
+    .contact-list {
+        border-top: none;
+        margin-bottom: .2rem;
+        padding: 0 0.2rem;
+        background-color: #ffffff;
+    }
+
+    .contact-list .bui-btn {
+        padding-left: 0;
+        padding-top: .3rem;
+        padding-bottom: .3rem;
+    }
+
+    .contact-list li:last-child {
+        border-bottom: none;
+    }
+</style>
+
+<style>
+
+    .user-pic{
+        border-top:none;
+    }
+    .user-pic .user-btn{
+        padding:.3rem;
+        border-bottom:none;
+        background-color: transparent;
+    }
+    .user-pic .thumbnail{
+        width:1rem;
+        height:1rem;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    .user-pic .pic{
+        width: 100%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+    }
+    .user-pic .item-title{
+        padding-top:.1rem;
+        color:#000;
+        margin-bottom: .15rem;
+    }
+    .user-pic .user-btn .item-text{
+        padding-top:.02rem;
+        margin-bottom:.05rem;
+        color:#fff;
+        font-size:.18rem;
+    }
+    .user-pic .user-btn .account-address{
+        text-align:right;
+        font-size:.16rem;
+        color:#fff;
+    }
+    .user-pic .user-btn .account-address a{
+        color:#fff;
+    }
+    .user-pic .user-btn .user-right{
+        font-size:.16rem;
+    }
+
+    .user-nav{
+        background-color:rgba(0,0,0,0.1);
+    }
+    .user-nav .bui-btn{
+        padding-top:.1rem;
+        padding-bottom:.1rem;
+        border:none;
+        color:#fff;
+        font-size:.2rem;
+        background-color:transparent;
+        border-right:1px solid #fff;
+    }
+    .user-nav .bui-btn span {
+        display: block;
+        margin-bottom: .1rem;
+        font-size:.4rem;
+    }
+    .user-nav .bui-btn:last-child{
+        border-right:none;
+    }
+
+</style>
+
+
+<div class="bui-page">
+    <header class="bui-bar">
+        <div class="bui-bar-left">
+            <a class="bui-btn" onclick="bui.back();"><i class="icon-back"></i></a>
+        </div>
+        <div class="bui-bar-main">账号管理</div>
+        <div class="bui-bar-right">
+        </div>
+    </header>
+    <main>
+        <ul class="bui-list user-pic">
+            <li class="bui-btn bui-box">
+                {if $user_info.head != null }
+                <a href="javascript:void(0);">
+                    <div class="thumbnail"><img src="/upload/{$user_info.head}" class="pic" id="head"></div>
+                </a>
+                {else /}
+                <a href="javascript:void(0);">
+                    <div class="thumbnail"><img src="/static/index/images/head_up.png" class="pic" id="head"></div>
+                </a>
+                {/if}
+                <div class="span1">
+                    <h3 class="item-title">{$user_info.username}</h3>
+                    {switch user_info.level}
+                    {case 0}<p class="item-text">普通用户</p>{/case}
+                    {case 1}<p class="item-text">一级志愿者</p>{/case}
+                    {case 2}<p class="item-text">二级志愿者</p>{/case}
+                    {case 3}<p class="item-text">高级志愿者</p>{/case}
+                    {/switch}
+                </div>
+                <div class="container-x">
+                    {switch user_info.is_auth}
+                    {case 0}<span style="color: #ff9236">未实名</span>{/case}
+                    {case 1}<span style="color: #52c41a">已实名</span>{/case}
+                    {/switch}
+                </div>
+            </li>
+        </ul>
+        <ul class="bui-list">
+            <li class="bui-btn bui-box clearactive">
+                <label class="bui-label">真实姓名:</label>
+                <div class="span1">
+                    <div class="bui-input user-input">
+                        <input type="text" name="real_name" value="{$user_info.real_name}" placeholder="请输入真实姓名">
+                    </div>
+                </div>
+            </li>
+            <li class="bui-btn bui-box clearactive">
+                <label class="bui-label" >身份证号:</label>
+                <div class="span1">
+                    <div class="bui-input">
+                        <input type="text" name="card_id" value="{$user_info.card_id}" placeholder="请输入身份证号">
+                    </div>
+                </div>
+            </li>
+            <li class="bui-btn bui-box clearactive">
+                <label class="bui-label" >开户银行:</label>
+                <div class="span1">
+                    <div class="bui-input">
+                        <input type="text" name="bank_name" value="{$user_info.bank_name}" placeholder="请输入开户银行名称">
+                    </div>
+                </div>
+            </li>
+            <li class="bui-btn bui-box clearactive">
+                <label class="bui-label" >银行卡号:</label>
+                <div class="span1">
+                    <div class="bui-input">
+                        <input type="text" name="bank_card" value="{$user_info.bank_card}" placeholder="请输入银行卡号">
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="container-xy">
+            <div class="bui-btn round primary">保存</div>
+        </div>
+        <input type="hidden" name="uid" value="{$user_info.id}">
+    </main>
+    <footer>
+        <ul class="bui-nav">
+            <a href="{:Url('index/index')}" class="bui-btn bui-box-vertical">
+                <li><i class="iconfont iconshouye3"></i><div class="span1">首页</div></li>
+            </a>
+
+            <a href="{:Url('join/index')}" class="bui-btn bui-box-vertical">
+                <li><i class="iconfont iconzhiyuanzhe"></i><div class="span1">加入</div></li>
+            </a>
+
+            <a href="{:Url('user/poster')}" class="bui-btn bui-box-vertical">
+                <li><i class="iconfont iconerweima1688"></i><div class="span1">邀请</div></li>
+            </a>
+
+            <a href="{:Url('user/index')}" class="bui-btn bui-box-vertical active">
+                <li><i class="iconfont iconmy1"></i><div class="span1">我的</div></li>
+            </a>
+        </ul>
+    </footer>
+</div>
+</body>
+</html>
+
+<script src="/static/public/layui/layui.js"></script>
+
+<script>bui.ready(function(){
+    var pageview = {};
+    return pageview;
+})
+</script>
+
+<script type="text/javascript">
+    $(document).on("click", ".primary", function () {
+        var uid = $("input[ name='uid']").val();
+        var real_name = $("input[ name='real_name']").val();
+        var card_id = $("input[ name='card_id']").val();
+        var bank_name = $("input[ name='bank_name']").val();
+        var bank_card = $("input[ name='bank_card']").val();
+        layer.load(2);
+        $.ajax({
+            url: "{:Url('user/account')}",
+            type: "post",
+            traditional: true,
+            data: {uid:uid,real_name: real_name, card_id: card_id,bank_name:bank_name,bank_card:bank_card},
+            success: function (e) {
+                layer.closeAll('loading');
+                if (e.code === 1) {
+                    layer.msg(e.msg, {
+                        end: function () {
+                            location.reload();
+                        }
+                    });
+                } else {
+                    layer.msg(e.msg, function () {
+                        return false;
+                    });
+                }
+            },
+        });
+    });
+</script>
+
+<script>
+    layui.use('upload', function () {
+        var $ = layui.jquery
+            , upload = layui.upload;
+        upload.render({
+            elem: '#head'
+            , url: "{:Url('upload/upload')}"
+            , accept: 'images'
+            , size: 4096
+            , multiple: false
+            , auto: false
+            , processData:false
+            , contentType:false
+            , choose: function (obj) {  //上传前选择回调方法
+                var flag = true;
+                obj.preview(function (index, file, result) {
+                    layer.load(2);
+                    var img = new Image();
+                    img.src = result;
+                    img.onload = function () { //初始化夹在完成后获取上传图片宽高，判断限制上传图片的大小。
+                        if (img.width > img.height) {  // 判断出最长边和最短边
+                            var chang = img.width;
+                            var duan = img.height;
+                        } else {
+                            var chang = img.height;
+                            var duan = img.width;
+                        }
+                        if (chang <= 800 && duan <= 800) {
+                            layer.closeAll('loading');
+                            obj.upload(index, file); //满足条件调用上传方法
+                        } else {
+                            layer.closeAll('loading');
+                            flag = false;
+                            layer.msg('头像宽高需相等,且均不高于500px', function () {
+                            });
+                            return false;
+                        }
+                    };
+                    return flag;
+                });
+            }
+            , done: function (e) {
+                if (e.code === 1) {
+                    layer.closeAll('loading');
+
+                    $('#head').attr('src', '/upload/' + e.data);                  //图片链接（base64）
+                } else {
+                    layer.closeAll('loading');
+                    layer.msg('系统错误,请联系客服', function () {
+                    });
+                    return false;
+                }
+            }
+            , error: function () {
+                layer.closeAll('loading');
+                layer.msg('系统错误,请联系客服', function () {
+                });
+            }
+        });
+    });
+</script>

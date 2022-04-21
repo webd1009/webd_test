@@ -1,0 +1,137 @@
+{include file="public/header"/}
+<body>
+
+<style>
+    .bui-list .bui-btn .icon-facefill {
+        font-size: 0.4rem;
+        margin-right: 0.2rem;
+    }
+    .pic{
+        width: 100%;
+        height: 100%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+</style>
+<div class="bui-page">
+    <header class="bui-bar">
+        <div class="bui-bar-left">
+            <a class="bui-btn" onclick="bui.back();"><i class="icon-back"></i></a>
+        </div>
+        <div class="bui-bar-main">我的团队</div>
+        <div class="bui-bar-right">
+        </div>
+    </header>
+    <main>
+
+        <ul class="bui-list bui-fluid-2 count-icon">
+            <li class="bui-btn bui-box">
+                <div class="span1" style="text-align: center;">
+                    <h3 class="item-title" >{$data.num}</h3>
+                    <p class="item-text" >团队人数</p>
+                </div>
+            </li>
+            <li class="bui-btn bui-box">
+                <div class="span1" style="text-align: center;">
+                    <h3 class="item-title">{$data.join}</h3>
+                    <p class="item-text">志愿者人数</p>
+                </div>
+            </li>
+        </ul>
+
+        <div id="scrollList" class="bui-scroll">
+            <div class="bui-scroll-head"></div>
+            <div class="bui-scroll-main">
+                <ul class="bui-list bui-list-thumbnail">
+                </ul>
+            </div>
+            <div class="bui-scroll-foot"></div>
+        </div>
+    </main>
+    <footer>
+        <ul class="bui-nav">
+            <a href="{:Url('index/index')}" class="bui-btn bui-box-vertical">
+                <li><i class="iconfont iconshouye3"></i><div class="span1">首页</div></li>
+            </a>
+
+            <a href="{:Url('join/index')}" class="bui-btn bui-box-vertical">
+                <li><i class="iconfont iconzhiyuanzhe"></i><div class="span1">加入</div></li>
+            </a>
+
+            <a href="{:Url('user/poster')}" class="bui-btn bui-box-vertical">
+                <li><i class="iconfont iconerweima1688"></i><div class="span1">邀请</div></li>
+            </a>
+
+            <a href="{:Url('user/index')}" class="bui-btn bui-box-vertical active">
+                <li><i class="iconfont iconmy1"></i><div class="span1">我的</div></li>
+            </a>
+        </ul>
+    </footer>
+</div>
+
+<script>/**
+ * 列表滚动加载
+ * 默认模块名: pages/list/list
+ * @return {[object]}  [ 返回一个对象 ]
+ */
+bui.ready(function(){
+
+    var uiList = bui.list({
+        id: "#scrollList",
+        url: "{:Url('team_info')}",
+        pageSize: 5,
+        data: {},
+        //如果分页的字段名不一样,通过field重新定义
+        field: {
+            page: "page",
+            size: "pageSize",
+            data: "data"
+        },
+        callback: function(e) {
+            // e.target 为你当前点击的元素
+            // $(e.target).closest(".bui-btn") 可以找到你当前点击的一整行,可以把一些属性放这里
+            console.log($(e.target).closest(".bui-btn").attr("class"))
+        },
+        template: function(data) {
+            console.log('data',data);
+            var html = "";
+            data.map(function(el, index) {
+                console.log('el',el);
+                if (!el.head){
+                    var img = '/static/index/images/head.png';
+                }else {
+                    var img = '/upload/'+el.head;
+                }
+                switch (el.level)
+                {
+                    case 0:var txt = '普通会员';
+                    break;
+                    case 1:var txt = '一级志愿者';
+                    break;
+                    case 2:var txt = '二级志愿者';
+                    break;
+                    case 3:var txt = '高级志愿者';
+                    break
+                }
+                html += `<li class="bui-btn bui-box">
+                    <div class="bui-thumbnail" style="width:1rem;height: 1rem"><img src="${img}" class="pic"></div>
+                    <div class="span1">
+                        <h3 class="item-title">${el.username}</h3>
+                        <p class="item-text">${el.create_time}</p>
+                    </div>
+                    <span class="price"><i></i>${txt}</span>
+                </li>`
+            });
+
+            return html;
+        }
+    });
+
+
+
+})
+
+</script>
+</body>
+</html>
