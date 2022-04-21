@@ -1,0 +1,84 @@
+{include file="public/header"/}
+<body>
+<div class="bui-page register-page">
+    <header class="bui-bar">
+        <div class="bui-bar">
+            <div class="bui-bar-left">
+                <a href="javascript:history.back(-1)" class="bui-btn btn-back"><i class="icon-back"></i></a>
+            </div>
+            <div class="bui-bar-main">注册</div>
+            <div class="bui-bar-right">
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="section-title">请填写注册信息</div>
+        <ul class="bui-list">
+            <li class="bui-btn bui-box clearactive">
+                <label class="bui-label" >手机号:</label>
+                <div class="span1">
+                    <div class="bui-input user-input">
+                        <input name="username" autocomplete="off" type="text" maxlength="11" value="" placeholder="请输入手机号">
+                    </div>
+                </div>
+            </li>
+            <li class="bui-btn bui-box clearactive">
+                <label class="bui-label" for="password">密码:</label>
+                <div class="span1">
+                    <div id="passwordInput" class="bui-input">
+                        <input name="password" id="password" type="password" placeholder="请输入密码">
+                    </div>
+                </div>
+            </li>
+
+            <li class="bui-btn bui-box clearactive">
+                <label class="bui-label" for="password">邀请码:</label>
+                <div class="span1">
+                    <div class="bui-input">
+                        {present name="invite_code"}
+                        <input name="invite_code" type="text" value="{$invite_code}" readonly>
+                        {else /}
+                        <input name="invite_code" maxlength="10" type="text" placeholder="请输入邀请码(选填)">
+                        {/present}
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="container-xy">
+            <div class="bui-btn round primary reg">注册</div>
+        </div>
+    </main>
+
+</div>
+</body>
+</html>
+{include file="public/footer"/}
+
+<script type="text/javascript">
+    $(document).on("click", ".reg", function () {
+        var username = $("input[ name='username']").val();
+        var password = $("input[ name='password']").val();
+        var invite_code = $("input[ name='invite_code']").val();
+        layer.load(2);
+        $.ajax({
+            url: "",
+            type: "post",
+            traditional: true,
+            data: {username: username, password: password,invite_code:invite_code},
+            success: function (e) {
+                layer.closeAll('loading');
+                if (e.code === 1) {
+                    layer.msg(e.msg, {
+                        end: function () {
+                            window.location.href = "{:Url('index/index')}";
+                        }
+                    });
+                } else {
+                    layer.msg(e.msg, function () {
+                        return false;
+                    });
+                }
+            },
+        });
+    });
+</script>
