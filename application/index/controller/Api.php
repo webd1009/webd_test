@@ -46,36 +46,4 @@ class Api extends Controller
         }
     }
 
-
-    public function srsky_notify()
-    {
-        $key = '271690e0adb57d2a8220df3783e89a4b';
-        if (Request::isPost()){
-            $data = Request::post();
-            wlog('data',$data);
-            if ($data['respCode'] == '0000'){
-                $sign = md5($data['orderId'].$data['respCode'].$key);
-                wlog('sign',$sign);
-                if ($sign == $data['sign']){
-                    $res = Api_m::srsky_notify($data['orderId']);
-                    wlog('res',$res);
-                    switch ($res)
-                    {
-                        case 'success':
-                        case 'error':
-                            echo 'SUCCESS';
-                            break;
-                        case 'error_info':
-                            wlog('fail',$data);
-                            echo 'fail';
-                            break;
-                    }
-                }else{
-                    echo 'error_sign';
-                    wlog('sign','no');
-                }
-            }
-        }
-    }
-
 }
