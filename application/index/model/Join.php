@@ -16,42 +16,6 @@ use think\facade\Request;
 
 class Join extends Model
 {
-    public static function pay($user_info)
-    {
-        $orderId = time().mt_rand(11111,99999);
-        $amount = Base_m::get_config('join_pay') * 100;
-        $notifyUrl = Request::domain().'/index/api/srsky_notify';
-        $frontUrl = Request::domain().'/index/user/index';
-        $branchCode = '662132109000002';
-        $merchId = '882210420000031';
-        $transType = '335';
-        $key = '271690e0adb57d2a8220df3783e89a4b';
-        $fromIp = get_client_ip();
-        $sign = md5($orderId.$amount.$merchId.$key);
-        $url = 'http://api.srsky.cn/php/createOrder.do';
-        $data['orderId'] = $orderId;
-        $data['amount'] = $amount;
-        $data['notifyUrl'] = $notifyUrl;
-        $data['frontUrl'] = $frontUrl;
-        $data['branchCode'] = $branchCode;
-        $data['merchId'] = $merchId;
-        $data['transType'] = $transType;
-        $data['fromIp'] = $fromIp;
-        $data['sign'] = $sign;
-        wlog('post',$data);
-        $res = self::send_post($url,$data);
-        if ($res['code'] == '0100'){
-            $add = self::add_join_list($user_info,$orderId);
-            if ($add == 'success'){
-                return ['code'=>1,'data'=>$res['data']['html']];
-            }else{
-                return ['code'=>0,'msg'=>'订单创建失败,请联系客服或重试!'];
-            }
-        }else{
-            return ['code'=>0,'msg'=>'订单创建失败,请联系客服或重试!'];
-        }
-    }
-
     public static function join_pay($user_info,$type)
     {
         switch ($type)
