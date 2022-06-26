@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: *!N.j
- * Date: 2022/4/14
- * Time: 21:13
- */
 
 namespace app\index\controller;
 
@@ -43,6 +37,30 @@ class Api extends Controller
             echo '已处理'.count($list).'条数据';
         }else{
             echo '没有数据';
+        }
+    }
+    
+    public function pay_do()
+    {
+        if (Request::isPost()){
+            $data = Request::post();
+            if ($data['respCode'] == '0000'){
+                $order_info = Db::name('my_pay')->where('order_id',$data['orderId'])->where('status',1)->find();
+                if ($order_info){
+                    $user_info = Base_m::get_user_info($order_info['uid']);
+                    $res = Api_m::pay_do($user_info,$order_info);
+                    switch ($res)
+                    {
+                        case 'success':
+                            echo 'SUCCESS';
+                            break;
+                        case 'error':
+                            wlog('data',$data);
+                            echo 'fail';
+                            break;
+                    }
+                }
+            }
         }
     }
 
