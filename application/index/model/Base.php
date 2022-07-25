@@ -79,5 +79,13 @@ class Base extends Model
         $image = \think\Image::open($hb);
         $image->water($qr,[$qr_config['width'],$qr_config['height']])->save(\Env::get('root_path').'public/qrcode/user/'.$uid.'/'.$uid.$qr_config['img_name'].'.png');
     }
+    
+    public static function create_join($uid,$real_name,$time,$qr_config,$be)
+    {
+        $hb = \Env::get('root_path').'public/qrcode/'.$qr_config['hb_img'];
+        $image = \think\Image::open($hb);
+        $image->text($real_name,\Env::get('root_path').'/public/font/SourceHanSansCN.otf',60,'#000000',[400,1170])->save(\Env::get('root_path').'public/qrcode/user/'.$uid.'/'.$uid.$qr_config['img_name'].'.png');
+        $image->text($time,\Env::get('root_path').'/public/font/SourceHanSansCN.otf',60,'#000000',[520,2450])->save(\Env::get('root_path').'public/qrcode/user/'.$uid.'/'.$uid.$qr_config['img_name'].'.png');
+    }
 
 }
