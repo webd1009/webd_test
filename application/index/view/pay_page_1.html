@@ -1,0 +1,90 @@
+{include file="public/header"/}
+<link rel="stylesheet" href="/static/index/css/share.css">
+<link rel="stylesheet" href="/static/index/css/font.css">
+<link rel="stylesheet" href="/static/index/css/ystep.css">
+
+<link rel="stylesheet" href="/static/index/css/pay_common.css">
+<body id="pay">
+<!-- 头部部分 开始 -->
+<header class="top_header">
+    <div class="left"><a href="javascript:history.back(-1)" class="return"></a></div>
+    <div class="title">社会保障卡</div>
+</header>
+
+<style>
+    .b {
+        line-height: 40px;
+        text-align: center;
+        margin: 0 auto;
+        display: block;
+        font-size: 14px;
+        border: solid 1px #cccccc;
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+        border-radius: 12px;
+        background: #4287ff;
+        color: #fff;
+        width: 92%;
+    }
+</style>
+
+<div class="container" style="margin-top: 60px">
+    <div class="trade"></div>
+    <div class="info">
+        <div class="bd">
+            <div class="price"><sup>&yen;</sup><span>{$money}</span></div>
+        </div>
+    </div>
+</div>
+<style>
+    .atv{
+        border: 1px solid #1578ff;
+    }
+</style>
+
+    <input type="hidden" id="zhifu" name="type" value="2">
+    <div class="alipay atv" data-type="1"><img width="30%" src="/static/index/images/zhifu.jpg"></div>
+    <div class="alipay" data-type="2"><img width="30%" src="/static/index/images/weixin.jpg"></div>
+    <div class="row btn"><button type="button" class="b pay_1" style="width:50%;line-height:30px;margin-top: 120px">立即缴纳</button></div>
+    <div class="pay-form"></div>
+<script>
+    $('.alipay').click(function(){
+        $('.alipay').removeClass('atv')
+        $('#zhifu').val($(this).attr('data-id'))
+        $(this).addClass('atv')
+    })
+    function zhifu(){
+        window.location.href=window.location.href+'&type='+$('#zhifu').val()
+    }
+</script>
+{include file="public/footer"/}
+</body>
+<script src="/static/index/index/pay_common.js?v=1"></script>
+</html>
+
+<script type="text/javascript">
+    $(document).on("click", ".pay_1", function () {
+        var type = $('.atv').data('type');
+        layer.load(2);
+        $.ajax({
+            url: "{:Url('fund/pay_1')}",
+            type: "post",
+            traditional: true,
+            data:{type:type},
+            success: function (e) {
+                layer.closeAll('loading');
+                if (e.code === 1) {
+                    window.location.href = e.url;
+                } else {
+                    layer.msg(e.msg, {
+                        time: 2000,
+                        icon: 5,
+                        end: function () {
+                            location.reload();
+                        }
+                    });
+                }
+            },
+        });
+    });
+</script>
